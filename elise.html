@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elise - Jungle Clears</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Elise - Jungle Clears</h1>
+    <div class="patch-label">Patch 13.16</div>
 
+    <div class="video-grid">
+      <div class="video-card" onclick="flipCard(this)">
+        <div class="path-title">Blue Side - Start Blue</div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-front" style="background-image: url('assets/images/sides/blue.jpg');"></div>
+            <div class="flip-back">
+              <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img src="assets/images/icons/bluebuff_gray.svg" class="buff-icon" alt="Blue Buff" />
+        <div class="clear-path" id="clear-1">
+          <img src="assets/images/icons/gromp_gray.svg" class="clear-icon" />
+          <img src="assets/images/icons/arrow.svg" class="arrow" />
+          <img src="assets/images/icons/wolves_gray.svg" class="clear-icon" />
+          <img src="assets/images/icons/arrow.svg" class="arrow" />
+          <img src="assets/images/icons/bluebuff_gray.svg" class="clear-icon" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
