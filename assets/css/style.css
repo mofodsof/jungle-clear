@@ -1,1 +1,128 @@
-
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #0e0e0e;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+body::before {
+  content: "";
+  background: url('../images/splash/elise.jpg') center/cover no-repeat;
+  opacity: 0.1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+}
+h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.patch-label {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FFD700;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.video-card {
+  background-color: #1c1c1c;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+.video-card:hover {
+  transform: translateY(-5px);
+}
+.flip-box {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.flip-box-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 4px;
+}
+.flip-front {
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+.video-card.flipped .flip-box-inner {
+  transform: rotateY(180deg);
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 4px;
+}
+.path-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.buff-icon {
+  margin-top: 0.5rem;
+  width: 50px;
+  height: 50px;
+}
+.clear-path {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+.clear-icon {
+  width: 40px;
+  height: 40px;
+  filter: grayscale(100%) brightness(0.5);
+  transition: all 0.3s ease;
+}
+.clear-icon.active {
+  filter: none;
+  box-shadow: 0 0 8px #00ffcc;
+}
+.arrow {
+  width: 20px;
+  margin: 0 5px;
+  align-self: center;
+}
