@@ -1,102 +1,78 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choisissez un champion</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elise - Jungle Clears</title>
   <style>
     body {
-      background: #0e0e0e;
-      color: #fff;
+      margin: 0;
+      padding: 0;
+      background: #0b0b0b url('assets/images/splash/elise.jpg') no-repeat center center fixed;
+      background-size: cover;
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 2rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
     }
     h1 {
-      font-size: 2rem;
+      z-index: 1;
       margin-bottom: 1rem;
     }
-    input[type="text"] {
-      padding: 0.5rem 1rem;
-      font-size: 1.2rem;
-      width: 300px;
-      border: none;
-      border-radius: 5px;
-    }
-    .champion-list {
-      margin-top: 2rem;
+    .videos {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
+      gap: 2rem;
+      z-index: 1;
     }
-    .champion {
-      background: #1f1f1f;
-      padding: 1.5rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-      width: 250px;
-      font-size: 1.3rem;
-    }
-    .champion:hover {
-      background: #333;
-    }
-    .video-container {
-      max-width: 960px;
-      margin: 2rem auto;
+    .video-box {
+      background: rgba(255, 255, 255, 0.05);
       padding: 1rem;
-      background: #1a1a1a;
       border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+      width: 45vw;
+    }
+    .video-box:hover {
+      transform: scale(1.05);
     }
     iframe {
       width: 100%;
-      height: 540px;
-      border: none;
+      height: 380px;
       border-radius: 10px;
+      border: none;
+    }
+    .label {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Choisissez un champion</h1>
-  <input type="text" id="search" placeholder="Écrivez le nom d'un champion...">
-
-  <div class="champion-list" id="championList"></div>
-
-  <div class="video-container">
-    <h2>Blue Side</h2>
-    <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+  <div class="overlay"></div>
+  <h1>Elise - Jungle Clear</h1>
+  <div class="videos">
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+      <div class="label">Blue Side</div>
+    </div>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+      <div class="label">Red Side</div>
+    </div>
   </div>
-
-  <div class="video-container">
-    <h2>Red Side</h2>
-    <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
-  </div>
-
-  <script>
-    const champions = [
-      "Elise", "Fiddlesticks", "Fizz", "Fiora", "Lee Sin", "Jarvan IV", "Kindred", "Kha'Zix",
-      "Graves", "Vi", "Nidalee", "Nocturne", "Zac", "Warwick", "Shaco"
-    ];
-
-    const listContainer = document.getElementById('championList');
-    const input = document.getElementById('search');
-
-    function renderChampions(filter = "") {
-      listContainer.innerHTML = "";
-      const filtered = champions.filter(name => name.toLowerCase().startsWith(filter.toLowerCase()));
-      filtered.forEach(champ => {
-        const div = document.createElement('div');
-        div.className = 'champion';
-        div.textContent = champ;
-        div.onclick = () => window.location.href = champ.toLowerCase() + ".html";
-        listContainer.appendChild(div);
-      });
-    }
-
-    input.addEventListener('input', () => renderChampions(input.value));
-
-    renderChampions();
-  </script>
 </body>
 </html>
