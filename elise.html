@@ -3,119 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil - Jungle Clear</title>
+  <title>Elise - Jungle Clear</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
-      margin: 0;
-      background: #0b0b0b;
+      background: url('assets/images/splash/elise.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      margin: 0;
     }
     header {
-      background: rgba(10, 10, 10, 0.85);
-      padding: 0.5rem 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
     }
-    .social-links {
-      display: flex;
-      gap: 0.8rem;
-    }
-    .social-links a {
+    .social-links a, .home-link {
       color: white;
+      margin: 0 0.5rem;
       text-decoration: none;
-      font-weight: bold;
       font-size: 0.9rem;
     }
     .home-link {
       font-size: 1.5rem;
       font-weight: bold;
-      margin-right: auto;
-      color: white;
-      text-decoration: none;
-    }
-    .search-bar input {
-      padding: 0.4rem 0.8rem;
-      border-radius: 5px;
-      border: none;
-      font-size: 1rem;
-      width: 240px;
     }
     main {
-      flex-grow: 1;
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-    }
-    .champion-list {
-      margin-top: 2rem;
-      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
+      padding: 2rem;
+      min-height: 90vh;
+      background: rgba(0, 0, 0, 0.6);
     }
-    .champion {
-      background: rgba(255, 255, 255, 0.05);
+    .side {
+      background: rgba(0, 0, 0, 0.7);
       padding: 1rem;
       border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      font-size: 1.1rem;
-      min-width: 140px;
-      position: relative;
-    }
-    .champion:hover {
-      transform: scale(1.05);
-    }
-    .buff-icon {
-      width: 50px;
-      height: 50px;
-      display: block;
-      margin: 0.5rem auto;
+      text-align: center;
+      width: 100%;
+      max-width: 480px;
       transition: transform 0.3s;
     }
-    .video-container {
-      display: none;
-      margin-top: 0.5rem;
+    .side:hover {
+      transform: scale(1.02);
     }
-    .champion.active .video-container {
+    .side h2 {
+      font-size: 1.5rem;
+    }
+    .buff-img {
+      width: 60px;
+      height: 60px;
+      margin: 1rem auto;
       display: block;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
     iframe {
+      display: none;
       width: 100%;
-      max-width: 320px;
-      height: 180px;
+      height: 300px;
       border: none;
       border-radius: 10px;
+      margin-top: 1rem;
     }
-    @media (max-width: 600px) {
-      .champion {
-        min-width: 120px;
-        font-size: 0.95rem;
-      }
-      .buff-icon {
-        width: 40px;
-        height: 40px;
+    .show iframe {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    @media (max-width: 768px) {
+      .side {
+        max-width: 100%;
       }
     }
   </style>
@@ -128,52 +94,24 @@
       <a href="#">Twitter</a>
       <a href="#">YouTube</a>
     </div>
-    <div class="search-bar">
-      <input type="text" id="search" placeholder="Rechercher un champion...">
-    </div>
   </header>
-
   <main>
-    <h1>Bienvenue sur Jungle Clear</h1>
-    <p>Découvrez les chemins de jungle optimaux pour chaque champion.</p>
-    <div class="champion-list" id="championList"></div>
+    <div class="side" id="blueSide">
+      <h2>Blue Side</h2>
+      <img src="assets/icons/bluebuff.svg" alt="Blue Buff" class="buff-img" onclick="toggleVideo('blueSide')">
+      <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+    </div>
+    <div class="side" id="redSide">
+      <h2>Red Side</h2>
+      <img src="assets/icons/redbuff.svg" alt="Red Buff" class="buff-img" onclick="toggleVideo('redSide')">
+      <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+    </div>
   </main>
-
   <script>
-    const champions = [
-      "Amumu", "Bel'Veth", "Diana", "Elise", "Evelynn", "Fiddlesticks", "Gragas", "Hecarim",
-      "Ivern", "Jarvan IV", "Karthus", "Kayn", "Kha'Zix", "Kindred", "Lee Sin", "Lillia",
-      "Maokai", "Nocturne", "Nunu", "Olaf", "Poppy", "Rammus", "Rek'Sai", "Rengar",
-      "Sejuani", "Shaco", "Shyvana", "Skarner", "Taliyah", "Trundle", "Udyr", "Vi",
-      "Viego", "Volibear", "Warwick", "Wukong", "Xin Zhao", "Zac"
-    ];
-
-    const listContainer = document.getElementById('championList');
-    const input = document.getElementById('search');
-
-    function renderChampions(filter = "") {
-      listContainer.innerHTML = "";
-      const filtered = champions.filter(name => name.toLowerCase().includes(filter.toLowerCase()));
-      filtered.forEach(champ => {
-        const div = document.createElement('div');
-        div.className = 'champion';
-        div.innerHTML = `
-          <div>${champ}</div>
-          <img class="buff-icon" src="assets/icons/bluebuff.svg" alt="Blue Buff">
-          <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
-          </div>
-        `;
-        div.querySelector('.buff-icon').addEventListener('click', () => {
-          div.classList.toggle('active');
-        });
-        listContainer.appendChild(div);
-      });
+    function toggleVideo(id) {
+      const container = document.getElementById(id);
+      container.classList.toggle('show');
     }
-
-    input.addEventListener('input', () => renderChampions(input.value));
-
-    renderChampions();
   </script>
 </body>
 </html>
