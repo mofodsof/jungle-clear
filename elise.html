@@ -1,113 +1,102 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elise - Jungle Clears</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choisissez un champion</title>
+  <style>
+    body {
+      background: #0e0e0e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    input[type="text"] {
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      width: 300px;
+      border: none;
+      border-radius: 5px;
+    }
+    .champion-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .champion {
+      background: #1f1f1f;
+      padding: 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 250px;
+      font-size: 1.3rem;
+    }
+    .champion:hover {
+      background: #333;
+    }
+    .video-container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #1a1a1a;
+      border-radius: 12px;
+    }
+    iframe {
+      width: 100%;
+      height: 540px;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Elise - Jungle Clears</h1>
-    <div class="patch-label">Patch 13.16</div>
+  <h1>Choisissez un champion</h1>
+  <input type="text" id="search" placeholder="Écrivez le nom d'un champion...">
 
-    <div class="video-grid">
-      <!-- 4 clears -->
-      
-<div class="video-card" onclick="flipCard(this)">
-  <div class="path-title">Blue Side - Start Blue</div>
-  <div class="flip-box">
-    <div class="flip-box-inner">
-      <div class="flip-front" style="background-image: url('assets/images/sides/blue.jpg');"></div>
-      <div class="flip-back">
-        <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-  <img src="assets/images/icons/bluebuff_gray.svg" class="buff-icon" alt="bluebuff Buff" />
-  <div class="clear-path">
-    <img src="assets/images/icons/gromp_gray.svg" class="clear-icon" />
-    <img src="assets/images/icons/arrow.svg" class="arrow" />
-    <img src="assets/images/icons/wolves.svg" class="clear-icon" />
-    <img src="assets/images/icons/arrow.svg" class="arrow" />
-    <img src="assets/images/icons/bluebuff_gray.svg" class="clear-icon" />
-  </div>
-</div>
+  <div class="champion-list" id="championList"></div>
 
+  <div class="video-container">
+    <h2>Blue Side</h2>
+    <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+  </div>
 
-<div class="video-card" onclick="flipCard(this)">
-  <div class="path-title">Blue Side - Start Red</div>
-  <div class="flip-box">
-    <div class="flip-box-inner">
-      <div class="flip-front" style="background-image: url('assets/images/sides/red.jpg');"></div>
-      <div class="flip-back">
-        <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
+  <div class="video-container">
+    <h2>Red Side</h2>
+    <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
   </div>
-  <img src="assets/images/icons/redbuff_gray.svg" class="buff-icon" alt="redbuff Buff" />
-  <div class="clear-path">
-    <img src="assets/images/icons/krugs_gray.svg" class="clear-icon" />
-    <img src="assets/images/icons/arrow.svg" class="arrow" />
-    <img src="assets/images/icons/raptors.svg" class="clear-icon" />
-    <img src="assets/images/icons/arrow.svg" class="arrow" />
-    <img src="assets/images/icons/redbuff_gray.svg" class="clear-icon" />
-  </div>
-</div>
 
+  <script>
+    const champions = [
+      "Elise", "Fiddlesticks", "Fizz", "Fiora", "Lee Sin", "Jarvan IV", "Kindred", "Kha'Zix",
+      "Graves", "Vi", "Nidalee", "Nocturne", "Zac", "Warwick", "Shaco"
+    ];
 
-<div class="video-card" onclick="flipCard(this)">
-  <div class="path-title">Red Side - Start Blue</div>
-  <div class="flip-box">
-    <div class="flip-box-inner">
-      <div class="flip-front" style="background-image: url('assets/images/sides/blue.jpg');"></div>
-      <div class="flip-back">
-        <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-  <img src="assets/images/icons/bluebuff_gray.svg" class="buff-icon" alt="bluebuff Buff" />
-  <div class="clear-path">
-    <img src="assets/images/icons/gromp_gray.svg" class="clear-icon" />
-    <img src="assets/images/icons/arrow.svg" class="arrow" />
-    <img src="assets/images/icons/wolves.svg" class="clear-icon" />
-    <img src="assets/images/icons/arrow.svg" class="arrow" />
-    <img src="assets/images/icons/bluebuff_gray.svg" class="clear-icon" />
-  </div>
-</div>
+    const listContainer = document.getElementById('championList');
+    const input = document.getElementById('search');
 
+    function renderChampions(filter = "") {
+      listContainer.innerHTML = "";
+      const filtered = champions.filter(name => name.toLowerCase().startsWith(filter.toLowerCase()));
+      filtered.forEach(champ => {
+        const div = document.createElement('div');
+        div.className = 'champion';
+        div.textContent = champ;
+        div.onclick = () => window.location.href = champ.toLowerCase() + ".html";
+        listContainer.appendChild(div);
+      });
+    }
 
-<div class="video-card" onclick="flipCard(this)">
-  <div class="path-title">Red Side - Start Red</div>
-  <div class="flip-box">
-    <div class="flip-box-inner">
-      <div class="flip-front" style="background-image: url('assets/images/sides/red.jpg');"></div>
-      <div class="flip-back">
-        <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-  <img src="assets/images/icons/redbuff_gray.svg" class="buff-icon" alt="redbuff Buff" />
-  <div class="clear-path">
-    <img src="assets/images/icons/krugs_gray.svg" class="clear-icon" />
-    <img src="assets/images/icons/arrow.svg" class="arrow" />
-    <img src="assets/images/icons/raptors.svg" class="clear-icon" />
-    <img src="assets/images/icons/arrow.svg" class="arrow" />
-    <img src="assets/images/icons/redbuff_gray.svg" class="clear-icon" />
-  </div>
-</div>
+    input.addEventListener('input', () => renderChampions(input.value));
 
-    </div>
-  </div>
-  <script src="assets/js/main.js"></script>
+    renderChampions();
+  </script>
 </body>
 </html>
