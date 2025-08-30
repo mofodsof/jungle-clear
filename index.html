@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choisissez un champion</title>
+  <style>
+    body {
+      background: #0e0e0e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    input[type="text"] {
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      width: 300px;
+      border: none;
+      border-radius: 5px;
+    }
+    .champion-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .champion {
+      background: #1f1f1f;
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .champion:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Choisissez un champion</h1>
+  <input type="text" id="search" placeholder="Écrivez le nom d'un champion...">
+
+  <div class="champion-list" id="championList"></div>
+
+  <script>
+    const champions = [
+      "Elise", "Fiddlesticks", "Fizz", "Fiora", "Lee Sin", "Jarvan IV", "Kindred", "Kha'Zix",
+      "Graves", "Vi", "Nidalee", "Nocturne", "Zac", "Warwick", "Shaco"
+    ];
+
+    const listContainer = document.getElementById('championList');
+    const input = document.getElementById('search');
+
+    function renderChampions(filter = "") {
+      listContainer.innerHTML = "";
+      const filtered = champions.filter(name => name.toLowerCase().startsWith(filter.toLowerCase()));
+      filtered.forEach(champ => {
+        const div = document.createElement('div');
+        div.className = 'champion';
+        div.textContent = champ;
+        div.onclick = () => window.location.href = champ.toLowerCase() + ".html";
+        listContainer.appendChild(div);
+      });
+    }
+
+    input.addEventListener('input', () => renderChampions(input.value));
+
+    renderChampions(); // initial call
+  </script>
+</body>
+</html>
