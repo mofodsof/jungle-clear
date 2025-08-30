@@ -3,25 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choisissez un champion</title>
+  <title>Accueil - Jungle Clear</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      background: #0e0e0e;
-      color: #fff;
+      margin: 0;
+      background: #0b0b0b;
+      color: white;
       font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: rgba(10, 10, 10, 0.85);
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .social-links {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .home-link {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: auto;
+      color: white;
+      text-decoration: none;
+    }
+    .search-bar input {
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
+      width: 240px;
+    }
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
     }
     h1 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 1rem;
-    }
-    input[type="text"] {
-      padding: 0.5rem 1rem;
-      font-size: 1.2rem;
-      width: 300px;
-      border: none;
-      border-radius: 5px;
     }
     .champion-list {
       margin-top: 2rem;
@@ -31,27 +70,82 @@
       gap: 1rem;
     }
     .champion {
-      background: #1f1f1f;
+      background: rgba(255, 255, 255, 0.05);
       padding: 1rem;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: transform 0.3s ease;
+      font-size: 1.1rem;
+      min-width: 140px;
+      position: relative;
     }
     .champion:hover {
-      background: #333;
+      transform: scale(1.05);
+    }
+    .buff-icon {
+      width: 50px;
+      height: 50px;
+      display: block;
+      margin: 0.5rem auto;
+      transition: transform 0.3s;
+    }
+    .video-container {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    .champion.active .video-container {
+      display: block;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    iframe {
+      width: 100%;
+      max-width: 320px;
+      height: 180px;
+      border: none;
+      border-radius: 10px;
+    }
+    @media (max-width: 600px) {
+      .champion {
+        min-width: 120px;
+        font-size: 0.95rem;
+      }
+      .buff-icon {
+        width: 40px;
+        height: 40px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Choisissez un champion</h1>
-  <input type="text" id="search" placeholder="Écrivez le nom d'un champion...">
+  <header>
+    <a href="index.html" class="home-link">🏠</a>
+    <div class="social-links">
+      <a href="#">Discord</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Rechercher un champion...">
+    </div>
+  </header>
 
-  <div class="champion-list" id="championList"></div>
+  <main>
+    <h1>Bienvenue sur Jungle Clear</h1>
+    <p>Découvrez les chemins de jungle optimaux pour chaque champion.</p>
+    <div class="champion-list" id="championList"></div>
+  </main>
 
   <script>
     const champions = [
-      "Elise", "Fiddlesticks", "Fizz", "Fiora", "Lee Sin", "Jarvan IV", "Kindred", "Kha'Zix",
-      "Graves", "Vi", "Nidalee", "Nocturne", "Zac", "Warwick", "Shaco"
+      "Amumu", "Bel'Veth", "Diana", "Elise", "Evelynn", "Fiddlesticks", "Gragas", "Hecarim",
+      "Ivern", "Jarvan IV", "Karthus", "Kayn", "Kha'Zix", "Kindred", "Lee Sin", "Lillia",
+      "Maokai", "Nocturne", "Nunu", "Olaf", "Poppy", "Rammus", "Rek'Sai", "Rengar",
+      "Sejuani", "Shaco", "Shyvana", "Skarner", "Taliyah", "Trundle", "Udyr", "Vi",
+      "Viego", "Volibear", "Warwick", "Wukong", "Xin Zhao", "Zac"
     ];
 
     const listContainer = document.getElementById('championList');
@@ -59,19 +153,27 @@
 
     function renderChampions(filter = "") {
       listContainer.innerHTML = "";
-      const filtered = champions.filter(name => name.toLowerCase().startsWith(filter.toLowerCase()));
+      const filtered = champions.filter(name => name.toLowerCase().includes(filter.toLowerCase()));
       filtered.forEach(champ => {
         const div = document.createElement('div');
         div.className = 'champion';
-        div.textContent = champ;
-        div.onclick = () => window.location.href = champ.toLowerCase() + ".html";
+        div.innerHTML = `
+          <div>${champ}</div>
+          <img class="buff-icon" src="assets/icons/bluebuff.svg" alt="Blue Buff">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+          </div>
+        `;
+        div.querySelector('.buff-icon').addEventListener('click', () => {
+          div.classList.toggle('active');
+        });
         listContainer.appendChild(div);
       });
     }
 
     input.addEventListener('input', () => renderChampions(input.value));
 
-    renderChampions(); // initial call
+    renderChampions();
   </script>
 </body>
 </html>
