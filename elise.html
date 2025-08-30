@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elise - Jungle Clear</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
+      margin: 0;
       background: url('assets/images/splash/elise.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: white;
       font-family: Arial, sans-serif;
-      margin: 0;
+      color: white;
     }
     header {
       background: rgba(0, 0, 0, 0.7);
@@ -18,70 +21,87 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
     }
-    .social-links a, .home-link {
+    .home-link, .social-links a {
       color: white;
-      margin: 0 0.5rem;
       text-decoration: none;
-      font-size: 0.9rem;
-    }
-    .home-link {
-      font-size: 1.5rem;
+      margin: 0 1rem;
       font-weight: bold;
     }
     main {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      align-items: flex-start;
-      gap: 2rem;
-      flex-wrap: wrap;
-      padding: 2rem;
       min-height: 90vh;
+      padding: 2rem;
+      gap: 2rem;
       background: rgba(0, 0, 0, 0.6);
     }
     .side {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
+      width: 360px;
+      height: 220px;
+      perspective: 1000px;
+    }
+    .flip-card {
       width: 100%;
-      max-width: 480px;
-      transition: transform 0.3s;
-    }
-    .side:hover {
-      transform: scale(1.02);
-    }
-    .side h2 {
-      font-size: 1.5rem;
-    }
-    .buff-img {
-      width: 60px;
-      height: 60px;
-      margin: 1rem auto;
-      display: block;
+      height: 100%;
+      position: relative;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
       cursor: pointer;
-      transition: transform 0.3s ease;
     }
-    iframe {
-      display: none;
+    .side.clicked .flip-card {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
       width: 100%;
-      height: 300px;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+    }
+    .flip-card-front img {
+      width: 80px;
+      height: 80px;
+    }
+    .flip-card-back iframe {
+      width: 100%;
+      height: 100%;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+    .jungle-path {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
       margin-top: 1rem;
+      flex-wrap: wrap;
     }
-    .show iframe {
-      display: block;
-      animation: fadeIn 0.5s ease-in-out;
+    .jungle-monster {
+      width: 40px;
+      height: 40px;
+      filter: grayscale(1);
+      opacity: 0.5;
+      transition: all 0.3s ease;
     }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.95);}
-      to {opacity: 1; transform: scale(1);}
+    .jungle-monster.active {
+      filter: none;
+      opacity: 1;
+      box-shadow: 0 0 8px 2px #00ffcc;
+      border-radius: 6px;
     }
     @media (max-width: 768px) {
       .side {
-        max-width: 100%;
+        width: 90%;
+        height: 200px;
       }
     }
   </style>
@@ -96,21 +116,51 @@
     </div>
   </header>
   <main>
-    <div class="side" id="blueSide">
-      <h2>Blue Side</h2>
-      <img src="assets/icons/bluebuff.svg" alt="Blue Buff" class="buff-img" onclick="toggleVideo('blueSide')">
-      <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+    <div class="side" onclick="flipCard(this)">
+      <div class="flip-card">
+        <div class="flip-card-front">
+          <img src="assets/icons/bluebuff.svg" alt="Blue Side">
+        </div>
+        <div class="flip-card-back">
+          <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="jungle-path">
+        <img src="assets/icons/monster1.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster2.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster3.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster4.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster5.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster6.svg" class="jungle-monster" onclick="toggleKill(this)">
+      </div>
     </div>
-    <div class="side" id="redSide">
-      <h2>Red Side</h2>
-      <img src="assets/icons/redbuff.svg" alt="Red Buff" class="buff-img" onclick="toggleVideo('redSide')">
-      <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+
+    <div class="side" onclick="flipCard(this)">
+      <div class="flip-card">
+        <div class="flip-card-front">
+          <img src="assets/icons/redbuff.svg" alt="Red Side">
+        </div>
+        <div class="flip-card-back">
+          <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="jungle-path">
+        <img src="assets/icons/monster1.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster2.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster3.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster4.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster5.svg" class="jungle-monster" onclick="toggleKill(this)">
+        <img src="assets/icons/monster6.svg" class="jungle-monster" onclick="toggleKill(this)">
+      </div>
     </div>
   </main>
+
   <script>
-    function toggleVideo(id) {
-      const container = document.getElementById(id);
-      container.classList.toggle('show');
+    function flipCard(container) {
+      container.classList.toggle('clicked');
+    }
+    function toggleKill(el) {
+      el.classList.toggle('active');
     }
   </script>
 </body>
