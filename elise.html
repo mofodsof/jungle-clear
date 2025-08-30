@@ -38,6 +38,12 @@
       gap: 3rem;
       background: rgba(0, 0, 0, 0.6);
     }
+    .sides-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
     .side {
       width: 500px;
       height: 300px;
@@ -101,6 +107,10 @@
       border-radius: 6px;
     }
     @media (max-width: 768px) {
+      .sides-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
       .side {
         width: 90%;
         height: 220px;
@@ -122,41 +132,43 @@
     </div>
   </header>
   <main>
-    <div class="side" onclick="flipCard(this)">
-      <div class="flip-card">
-        <div class="flip-card-front">
-          <img src="assets/icons/bluebuff.svg" alt="Blue Side">
+    <div class="sides-wrapper">
+      <div class="side" onclick="flipCard(this)">
+        <div class="flip-card">
+          <div class="flip-card-front">
+            <img src="assets/icons/bluebuff.svg" alt="Blue Side">
+          </div>
+          <div class="flip-card-back">
+            <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+          </div>
         </div>
-        <div class="flip-card-back">
-          <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+        <div class="jungle-path">
+          <img src="assets/icons/monster1.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster2.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster3.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster4.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster5.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster6.svg" class="jungle-monster" onclick="toggleKill(this)">
         </div>
       </div>
-      <div class="jungle-path">
-        <img src="assets/icons/monster1.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster2.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster3.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster4.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster5.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster6.svg" class="jungle-monster" onclick="toggleKill(this)">
-      </div>
-    </div>
 
-    <div class="side" onclick="flipCard(this)">
-      <div class="flip-card">
-        <div class="flip-card-front">
-          <img src="assets/icons/redbuff.svg" alt="Red Side">
+      <div class="side" onclick="flipCard(this)">
+        <div class="flip-card">
+          <div class="flip-card-front">
+            <img src="assets/icons/redbuff.svg" alt="Red Side">
+          </div>
+          <div class="flip-card-back">
+            <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+          </div>
         </div>
-        <div class="flip-card-back">
-          <iframe src="https://www.youtube.com/embed/O7WojxuWy38?enablejsapi=1" allowfullscreen></iframe>
+        <div class="jungle-path">
+          <img src="assets/icons/monster1.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster2.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster3.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster4.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster5.svg" class="jungle-monster" onclick="toggleKill(this)">
+          <img src="assets/icons/monster6.svg" class="jungle-monster" onclick="toggleKill(this)">
         </div>
-      </div>
-      <div class="jungle-path">
-        <img src="assets/icons/monster1.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster2.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster3.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster4.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster5.svg" class="jungle-monster" onclick="toggleKill(this)">
-        <img src="assets/icons/monster6.svg" class="jungle-monster" onclick="toggleKill(this)">
       </div>
     </div>
   </main>
